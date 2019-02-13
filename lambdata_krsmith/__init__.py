@@ -9,7 +9,6 @@ import pandas as pd
 
 
 def ymd_columns(dataframe, column_name):
-    dataframe = df.copy()
     dataframe[column_name] = pd.to_datetime(dataframe[column_name])
     dataframe['Year'] = dataframe[column_name].dt.year
     dataframe['Month'] = dataframe[column_name].dt.month
