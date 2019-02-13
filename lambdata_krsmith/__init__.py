@@ -21,6 +21,7 @@ def ymd_columns(dataframe, column_name):
 
 
 def ym_column(dataframe, column_name):
+    dataframe[column_name] = pd.to_datetime(dataframe[column_name])
     dataframe['yearMonth'] = dataframe[column_name].dt.to_period('M')
     return dataframe
 
@@ -31,11 +32,12 @@ def ym_column(dataframe, column_name):
 
 
 def list_to_column(dataframe, list, column_name):
-    dataframe[column_name] = pd.Series(l, index=dataframe.index)
+    dataframe[column_name] = pd.Series(list, index=dataframe.index)
     return dataframe.head()
 
 # Function to return any row from a dataframe that has a NaN in any column
 
 
 def null_in_row(dataframe):
-    dataframe[dataframe.isnull().any(axis=1)]
+    nulls = dataframe[dataframe.isnull().any(axis=1)]
+    return nulls
